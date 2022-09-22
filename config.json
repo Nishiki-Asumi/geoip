@@ -80,6 +80,15 @@
       }
     },
     {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "geoip-cn-ipv6.dat",
+        "wantedList": ["cn"],
+        "onlyIPType": "ipv6"
+      }
+    },
+    {
       "type": "maxmindMMDB",
       "action": "output",
       "args": {
@@ -121,6 +130,15 @@
           "telegram",
           "twitter"
         ]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "geoip-cn-ipv6.mmdb",
+        "wantedList": ["cn"],
+        "onlyIPType": "ipv6"
       }
     },
     {

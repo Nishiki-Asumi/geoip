@@ -58,6 +58,12 @@ jobs:
         run: |
           go run ./
 
+      - name: Build geoip files for CERNET
+        run: |
+          mv config.json config.json.bak
+          mv config_cnv4v6p.json config.json
+          go run ./
+
       - name: Verify mmdb files
         run: |
           cd ./output/maxmind || exit 1
@@ -107,12 +113,12 @@ jobs:
           git remote add geoip "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u geoip release
 
-      - name: Purge jsdelivr CDN
-        run: |
-          cd publish || exit 1
-          for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
-          done
+      # - name: Purge jsdelivr CDN
+      #   run: |
+      #     cd publish || exit 1
+      #     for file in $(ls); do
+      #       curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+      #     done
 
       - name: Remove some files to avoid publishing to GitHub release
         run: rm -rf ./publish/*.{gz,zip} ./publish/text
