@@ -1,21 +1,19 @@
 {
     "input": [
         {
-            "type": "maxmindGeoLite2CountryCSV",
+            "type": "text",
             "action": "add",
             "args": {
-                "country": "./geolite2/GeoLite2-Country-Locations-en.csv",
-                "ipv4": "./geolite2/GeoLite2-Country-Blocks-IPv4.csv",
-                "ipv6": "./geolite2/GeoLite2-Country-Blocks-IPv6.csv"
+                "name": "cn",
+                "uri": "./output/text/cn.txt"
             }
         },
         {
-            "type": "cutter",
-            "action": "remove",
+            "type": "text",
+            "action": "add",
             "args": {
-                "wantedList": [
-                    "cn"
-                ],
+                "name": "cnv4",
+                "uri": "./output/text/cn.txt",
                 "onlyIPType": "ipv4"
             }
         },
@@ -23,16 +21,9 @@
             "type": "text",
             "action": "add",
             "args": {
-              "name": "cnv4",
-              "uri": "https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt",
-              "onlyIPType": "ipv4"
-            }
-          },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "inputDir": "./data"
+                "name": "cnv6",
+                "uri": "./output/text/cn.txt",
+                "onlyIPType": "ipv6"
             }
         },
         {
@@ -45,32 +36,11 @@
             "type": "v2rayGeoIPDat",
             "action": "output",
             "args": {
-                "outputName": "cn-ipv6-private.dat",
-                "wantedList": [
-                    "cn",
-                    "private"
-                ]
-            }
-        },
-        {
-            "type": "v2rayGeoIPDat",
-            "action": "output",
-            "args": {
                 "outputName": "cn-ipv4-ipv6-private.dat",
                 "wantedList": [
                     "cn",
+                    "cnv6",
                     "cnv4",
-                    "private"
-                ]
-            }
-        },
-        {
-            "type": "maxmindMMDB",
-            "action": "output",
-            "args": {
-                "outputName": "cn-ipv6-private.mmdb",
-                "wantedList": [
-                    "cn",
                     "private"
                 ]
             }
@@ -82,8 +52,33 @@
                 "outputName": "cn-ipv4-ipv6-private.mmdb",
                 "wantedList": [
                     "cn",
+                    "cnv6",
                     "cnv4",
                     "private"
+                ]
+            }
+        },
+        {
+            "type": "text",
+            "action": "output",
+            "args": {
+                "wantedList": [
+                    "cn",
+                    "private",
+                    "cnv4",
+                    "cnv6"
+                ]
+            }
+        },
+        {
+            "type": "clashRuleSet",
+            "action": "output",
+            "args": {
+                "wantedList": [
+                    "cn",
+                    "private",
+                    "cnv4",
+                    "cnv6"
                 ]
             }
         }
