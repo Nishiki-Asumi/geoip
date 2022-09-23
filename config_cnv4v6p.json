@@ -46,19 +46,6 @@
             }
         },
         {
-            "type": "maxmindMMDB",
-            "action": "output",
-            "args": {
-                "outputName": "cn-ipv4-ipv6-private.mmdb",
-                "wantedList": [
-                    "cn",
-                    "cnv6",
-                    "cnv4",
-                    "private"
-                ]
-            }
-        },
-        {
             "type": "text",
             "action": "output",
             "args": {
